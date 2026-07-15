@@ -22,7 +22,6 @@ let editing = null;
 let current = null;
 let dirty = false;
 let saveTimer = null;
-let deferredInstall = null;
 
 function esc(v=''){
   return String(v).replace(/[&<>"']/g,m=>({
@@ -93,10 +92,8 @@ function themeColor(theme){
 function applyTheme(theme){
   document.documentElement.setAttribute('data-theme', theme);
   localStorage.setItem(THEME_KEY, theme);
-  const icon = $('#themeIcon');
   const label = $('#themeLabel');
-  if(icon) icon.textContent = theme === 'dark' ? '🌙' : '☀️';
-  if(label) label.textContent = theme === 'dark' ? 'Escuro' : 'Claro';
+  if(label) label.textContent = theme === 'dark' ? 'Tema escuro' : 'Tema claro';
   const meta = document.querySelector('meta[name="theme-color"]');
   if(meta) meta.setAttribute('content', themeColor(theme));
 }
@@ -605,21 +602,20 @@ setInterval(()=>{
 window.addEventListener('beforeunload', ()=>{
   localStorage.setItem(APP_KEY, JSON.stringify(items));
 });
-window.addEventListener('beforeinstallprompt', (event)=>{
-  event.preventDefault();
-  deferredInstall = event;
-  $('#installBtn').style.display = 'inline-flex';
-});
-async function installApp(){
-  if(!deferredInstall) return;
-  deferredInstall.prompt();
-  await deferredInstall.userChoice;
-  deferredInstall = null;
-  $('#installBtn').style.display = 'none';
-}
 
-if('serviceWorker' in navigator && location.protocol.startsWith('http')){
-  navigator.serviceWorker.register('./sw.js').catch(()=>{});
+async function cleanupOldPWA(){
+  if('serviceWorker' in navigator){
+    try{
+      const regs = await navigator.serviceWorker.getRegistrations();
+      await Promise.all(regs.map(reg => reg.unregister()));
+    }catch{}
+  }
+  if('caches' in window){
+    try{
+      const keys = await caches.keys();
+      await Promise.all(keys.filter(k => k.startsWith('jobsearch-') || k.startsWith('JobSearch')).map(k => caches.delete(k)));
+    }catch{}
+  }
 }
 
 const segments = [...new Set(items.map(item => item.segment).filter(Boolean))].sort();
@@ -631,5 +627,6 @@ $('#formStatus').innerHTML = statuses.map(item=>`<option>${item}</option>`).join
 $('#versionLabel').textContent = `v${META.version || '2.0.0'}`;
 ['q','fm','fs','fp','fst','fc'].forEach((id)=>$('#'+id).addEventListener(id==='q' ? 'input' : 'change', render));
 applyTheme(localStorage.getItem(THEME_KEY) || document.documentElement.getAttribute('data-theme') || 'dark');
+cleanupOldPWA();
 initBackup();
 render();

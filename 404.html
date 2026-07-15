@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#081225">
+  <meta name="theme-color" content="#020102">
   <meta name="description" content="JobSearch: CRM pessoal de candidaturas presenciais em Patos-PB e remotas no Brasil.">
   <title>JobSearch — Renan Costa</title>
   <link rel="manifest" href="./manifest.webmanifest">
@@ -28,10 +28,8 @@
 
     <div class="actions">
       <button id="themeToggle" class="btn dark theme-toggle" onclick="toggleTheme()" type="button" aria-label="Alternar tema">
-        <span id="themeIcon">🌙</span>
         <span id="themeLabel">Tema escuro</span>
       </button>
-      <button id="installBtn" class="btn dark install" onclick="installApp()" type="button">Instalar app</button>
       <button class="btn primary" onclick="editItem()" type="button">+ Empresa</button>
       <button class="btn dark" onclick="openSnapshots()" type="button">Versões</button>
       <button class="btn dark" onclick="exportJSON()" type="button">Backup</button>
@@ -105,6 +103,16 @@
 
     <section class="table-wrap">
       <table>
+        <colgroup>
+          <col class="col-sent">
+          <col class="col-company">
+          <col class="col-priority">
+          <col class="col-segment">
+          <col class="col-channel">
+          <col class="col-contact">
+          <col class="col-status">
+          <col class="col-actions">
+        </colgroup>
         <thead>
           <tr>
             <th>Enviado</th>

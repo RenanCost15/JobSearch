@@ -113,8 +113,7 @@ strong{color:var(--text)}
 :root[data-theme="light"] .btn.dark,
 :root:not([data-theme="dark"]) .btn.dark{background:#162033;border-color:#243147;color:#fff}
 .btn.danger{color:var(--danger)}
-.theme-toggle{min-width:132px;justify-content:center;display:inline-flex;align-items:center;gap:8px}
-.install{display:none}
+.theme-toggle{min-width:140px;justify-content:center;display:inline-flex;align-items:center}
 
 .container{max-width:1540px;margin:0 auto;padding:26px}
 .hero{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(340px,.95fr);gap:16px;margin-bottom:18px}
@@ -190,7 +189,16 @@ strong{color:var(--text)}
 .toolbar{display:flex;justify-content:space-between;align-items:center;gap:14px;margin:6px 2px 12px}
 
 .table-wrap{overflow:auto;padding:4px}
-table{width:100%;border-collapse:separate;border-spacing:0;min-width:1380px}
+table{width:100%;border-collapse:separate;border-spacing:0;min-width:1380px;table-layout:fixed}
+.col-sent{width:52px}
+.col-company{width:230px}
+.col-priority{width:120px}
+.col-segment{width:250px}
+.col-channel{width:230px}
+.col-contact{width:240px}
+.col-status{width:140px}
+.col-actions{width:150px}
+
 thead th{
   position:sticky;
   top:0;
@@ -207,22 +215,22 @@ thead th{
 }
 tr td:first-child, tr th:first-child{padding-left:16px}
 tr td:last-child, tr th:last-child{padding-right:16px}
-td{padding:15px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:13px}
+td{padding:15px 12px;border-bottom:1px solid var(--line);vertical-align:middle;font-size:13px}
 tr:hover td{background:color-mix(in srgb, var(--panel-2) 74%, transparent)}
-.company{font-weight:800;font-size:14px;line-height:1.35;letter-spacing:-.01em}
+.company{font-weight:800;font-size:14px;line-height:1.35;letter-spacing:-.01em;margin-bottom:4px}
 .truncate{max-width:290px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.contact-cell{min-width:230px;max-width:280px;word-break:break-word;color:var(--text-soft)}
+.contact-cell{min-width:230px;max-width:280px;word-break:break-word;color:var(--text-soft);line-height:1.45}
 .priority-badge{display:inline-flex;align-items:center;justify-content:center;min-width:28px;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:900;border:1px solid transparent}
 .priority-badge.A{background:color-mix(in srgb, var(--success) 16%, var(--panel));color:var(--success);border-color:color-mix(in srgb, var(--success) 28%, transparent)}
 .priority-badge.B{background:color-mix(in srgb, var(--warning) 16%, var(--panel));color:var(--warning);border-color:color-mix(in srgb, var(--warning) 28%, transparent)}
 .priority-badge.C{background:var(--panel-2);color:var(--muted-2);border-color:var(--border)}
 .priority-cell{min-width:128px}
 .confidence{font-size:11px;padding:5px 8px;border-radius:8px;background:var(--panel-2);color:var(--muted-2);display:inline-block;margin-top:6px;border:1px solid var(--border)}
-.status{width:100%;border:1px solid var(--border);border-radius:10px;padding:9px 10px;font-size:12px;background:var(--panel-2);color:var(--text);max-width:170px}
+.status{width:100%;border:1px solid var(--border);border-radius:10px;padding:9px 10px;font-size:12px;background:var(--panel-2);color:var(--text);max-width:130px}
 .check{width:18px;height:18px;accent-color:var(--accent)}
-.row-actions{align-items:center}
-.row-actions .btn{padding:9px 11px;font-size:12px;box-shadow:none;white-space:nowrap}
-.actions-cell{min-width:195px}
+.row-actions{align-items:center;flex-wrap:nowrap}
+.row-actions .btn{padding:8px 10px;font-size:12px;box-shadow:none;white-space:nowrap}
+.actions-cell{min-width:150px}
 .card-view{display:none;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .card{padding:18px}
 .card-header{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:8px}
