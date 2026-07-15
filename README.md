@@ -57,3 +57,22 @@ A configuração do Vite usa a base `/JobSearch/`.
 ## Privacidade
 
 Não envie currículos, documentos pessoais ou backups JSON para um repositório público. Os dados de acompanhamento ficam no `localStorage` do navegador e nos arquivos de backup autorizados pelo usuário.
+
+## Ambiente recomendado
+
+- Node.js 24.18.0 LTS
+- npm 11.16.0
+- React 19.2.7
+- React DOM 19.2.7
+- Vite 8.1.4
+- @vitejs/plugin-react 6.0.3
+- lucide-react 1.24.0
+
+No Windows com FNM, execute na raiz do projeto:
+
+```powershell
+Set-ExecutionPolicy -Scope Process Bypass
+.\setup-windows.ps1
+```
+
+Depois use `npm run dev`.
