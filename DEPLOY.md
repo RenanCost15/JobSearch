@@ -1,23 +1,26 @@
-# Publicação rápida
+# Publicação no GitHub Pages
 
-## Pelo site do GitHub
+## Atualização do repositório existente
 
-1. Entre no GitHub e crie um repositório **público** chamado `JobSearch`.
-2. Clique em **uploading an existing file**.
-3. Arraste todos os arquivos e pastas deste projeto. A pasta `.github` também precisa ser enviada.
-4. Faça o commit na branch `main`.
-5. Vá em **Settings → Pages → Source: GitHub Actions**.
-6. Vá em **Actions**, abra o workflow de deploy e aguarde a conclusão.
-
-## Pelo Git
+1. Faça backup dos dados dentro do aplicativo.
+2. Extraia o ZIP do projeto.
+3. Substitua o conteúdo do repositório `JobSearch` pelos arquivos extraídos.
+4. Execute, opcionalmente:
 
 ```bash
-git init
-git add .
-git commit -m "Publica JobSearch"
-git branch -M main
-git remote add origin https://github.com/SEU-USUARIO/JobSearch.git
-git push -u origin main
+npm install
+npm run build
 ```
 
-Depois habilite **Settings → Pages → GitHub Actions**.
+5. Faça commit e push para `main`.
+6. Confirme em **Settings → Pages** que a fonte é **GitHub Actions**.
+
+## Endereço esperado
+
+```text
+https://SEU-USUARIO.github.io/JobSearch/
+```
+
+## Cache
+
+Esta versão não usa service worker. Após a publicação, uma atualização normal da página deve carregar o novo build. Se o navegador mantiver arquivos antigos, use `Ctrl + F5` uma vez.
