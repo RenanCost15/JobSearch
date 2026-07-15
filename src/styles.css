@@ -190,7 +190,7 @@ strong{color:var(--text)}
 
 .table-wrap{overflow:auto;padding:4px}
 table{width:100%;border-collapse:separate;border-spacing:0;min-width:1380px;table-layout:fixed}
-.col-sent{width:52px}
+.col-sent{width:56px}
 .col-company{width:230px}
 .col-priority{width:120px}
 .col-segment{width:250px}
@@ -258,6 +258,18 @@ tr:hover td{background:color-mix(in srgb, var(--panel-2) 74%, transparent)}
 .toast{position:fixed;right:18px;bottom:18px;background:var(--nav);color:#fff;padding:13px 16px;border-radius:12px;box-shadow:var(--shadow);opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s;z-index:120}
 .toast.show{opacity:1;transform:translateY(0)}
 .hidden{display:none!important}
+
+
+.filters > .field,.filters > .field-actions{align-self:end}
+.field label{padding-left:2px}
+.actions-cell .btn{border-radius:999px; min-width:0}
+.actions-cell{padding-right:10px}
+.actions-cell .row-actions .btn:nth-child(1){min-width:40px}
+.actions-cell .row-actions .btn:nth-child(2){min-width:58px}
+.actions-cell .row-actions .btn:nth-child(3){min-width:52px}
+.status + .sub{margin-top:8px}
+.company + .sub{margin-top:2px}
+.table-wrap table{background:transparent}
 
 @media (max-width:1260px){
   .hero{grid-template-columns:1fr}
