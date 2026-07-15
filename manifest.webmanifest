@@ -1,0 +1,17 @@
+{
+  "name": "JobSearch — Renan Costa",
+  "short_name": "JobSearch",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#0f172a",
+  "description": "CRM pessoal de candidaturas em Patos-PB e vagas remotas.",
+  "icons": [
+    {
+      "src": "./assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

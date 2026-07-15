@@ -1,0 +1,27 @@
+name: Weekly JobSearch link check
+on:
+  schedule:
+    - cron: '0 11 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check company and career links
+        id: links
+        continue-on-error: true
+        run: node scripts/check-links.mjs
+      - name: Add report to job summary
+        if: always()
+        run: cat link-report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jobsearch-link-report
+          path: |
+            link-report.json
+            link-report.md
