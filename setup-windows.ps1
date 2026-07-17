@@ -23,6 +23,9 @@ if ($ProfileContent -notlike "*fnm env --use-on-cd*") {
     Add-Content -Path $PROFILE -Value "`n$FnmInit"
 }
 
+Write-Host "Configurando o registro público do npm..." -ForegroundColor Cyan
+npm config set registry "https://registry.npmjs.org/"
+
 Write-Host "Limpando dependências anteriores..." -ForegroundColor Cyan
 Remove-Item -Recurse -Force "node_modules" -ErrorAction SilentlyContinue
 

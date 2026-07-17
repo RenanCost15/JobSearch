@@ -7,7 +7,6 @@ import {
   CalendarClock,
   Check,
   ChevronRight,
-  CircleUserRound,
   Clipboard,
   CloudDownload,
   Database,
@@ -37,6 +36,8 @@ import {
 } from 'lucide-react';
 import seedCompanies from './data/companies.json';
 import seedVacancies from './data/vacancies.json';
+
+const PROFILE_PHOTO = `${import.meta.env.BASE_URL}renan-costa.jpg`;
 
 const COMPANY_KEY = 'jobsearch.react.companies.v3';
 const VACANCY_KEY = 'jobsearch.react.vacancies.v3';
@@ -576,7 +577,7 @@ function App() {
         </div>
 
         <div className="sidebar-profile">
-          <CircleUserRound size={30} />
+          <img src={PROFILE_PHOTO} alt="Foto de perfil de Renan Costa" className="profile-photo" />
           <div><strong>Renan Costa</strong><span>Patos-PB · remoto Brasil</span></div>
         </div>
       </aside>
