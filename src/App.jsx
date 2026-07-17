@@ -119,12 +119,29 @@ function formatDate(date) {
   return new Intl.DateTimeFormat('pt-BR').format(parsed);
 }
 
+function getBrasiliaGreeting(date = new Date()) {
+  const hourPart = new Intl.DateTimeFormat('pt-BR', {
+    timeZone: 'America/Sao_Paulo',
+    hour: 'numeric',
+    hourCycle: 'h23'
+  })
+    .formatToParts(date)
+    .find((part) => part.type === 'hour');
+
+  const hour = Number(hourPart?.value ?? 0);
+
+  if (hour >= 5 && hour < 12) return 'Bom dia';
+  if (hour >= 12 && hour < 18) return 'Boa tarde';
+  return 'Boa noite';
+}
+
 function defaultMessage(company) {
+  const greeting = getBrasiliaGreeting();
   const localIntro = company.modality?.startsWith('Presencial')
     ? 'Estou estabelecendo residência em Patos-PB'
     : 'Resido em Patos-PB e tenho estrutura para trabalho totalmente remoto';
 
-  return `Olá, equipe de ${company.sector || 'Recursos Humanos'} da ${company.company}! Meu nome é Renan Costa.\n\n${localIntro} e gostaria de colocar meu currículo à disposição para oportunidades em ${company.targetRoles || 'áreas administrativas, atendimento ou suporte'}.\n\nSou estudante de Sistemas de Informação pela UFRN e tenho experiência prática com atendimento ao cliente, apoio administrativo e comercial, organização de processos, estoque, planilhas, relatórios, dashboards e suporte técnico. Tenho perfil organizado, comunicativo, proativo e disponibilidade para trabalhar em qualquer horário.\n\nAcredito que meu perfil pode contribuir com a equipe e fico à disposição para processos seletivos atuais ou futuros. Encaminho meu currículo para avaliação.\n\nAtenciosamente,\nRenan Costa\nTelefone/WhatsApp: ${PHONE}`;
+  return `${greeting}, equipe de ${company.sector || 'Recursos Humanos'} da ${company.company}! Meu nome é Renan Costa.\n\n${localIntro} e gostaria de colocar meu currículo à disposição para oportunidades em ${company.targetRoles || 'áreas administrativas, atendimento ou suporte'}.\n\nSou estudante de Sistemas de Informação pela UFRN e tenho experiência prática com atendimento ao cliente, apoio administrativo e comercial, organização de processos, estoque, planilhas, relatórios, dashboards e suporte técnico. Tenho perfil organizado, comunicativo, proativo e disponibilidade para trabalhar em qualquer horário.\n\nAcredito que meu perfil pode contribuir com a equipe e fico à disposição para processos seletivos atuais ou futuros. Encaminho meu currículo para avaliação.\n\nAtenciosamente,\nRenan Costa\nTelefone/WhatsApp: ${PHONE}`;
 }
 
 function normalizeCompany(company) {

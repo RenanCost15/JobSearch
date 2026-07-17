@@ -76,3 +76,13 @@ Set-ExecutionPolicy -Scope Process Bypass
 ```
 
 Depois use `npm run dev`.
+
+## Saudação automática
+
+As mensagens geradas usam o horário oficial de Brasília (`America/Sao_Paulo`):
+
+- Bom dia: 05h00 às 11h59
+- Boa tarde: 12h00 às 17h59
+- Boa noite: 18h00 às 04h59
+
+A saudação é recalculada quando a mensagem é aberta ou copiada. Mensagens personalizadas manualmente permanecem inalteradas.
